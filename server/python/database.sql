@@ -4,7 +4,7 @@ CREATE DATABASE leavedb;
 
 -- Connect to the database
 
-\c tournament
+-- tournament
 
 -- Create user table
 
