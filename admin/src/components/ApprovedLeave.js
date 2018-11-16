@@ -141,7 +141,7 @@ export default class ApprovedLeaveList extends Component<Props, State> {
 
     const userRecord = approved_items.filter(e => e.id === listID);
 
-    const leaveID = userRecord[0].dbId;
+    const leaveID = userRecord[0].id;
     const previousLeaveName = userRecord[0].leaveName;
     const previousLeaveDays = userRecord[0].leaveDays;
     const previousLeaveType = userRecord[0].leaveType;
@@ -393,7 +393,7 @@ export default class ApprovedLeaveList extends Component<Props, State> {
     const userRecord = approved_items.filter(e => e.id === listID);
 
     const userID = userRecord[0].userId;
-    const leaveID = userRecord[0].dbId;
+    const leaveID = userRecord[0].id;
     const leaveDays = userRecord[0].leaveDays;
     const leaveName = userRecord[0].leaveName;
 
@@ -451,7 +451,7 @@ export default class ApprovedLeaveList extends Component<Props, State> {
                       <div className="row">
                         <div className="col-md-6">
                           <p>
-                            {record.user.othernames} {record.user.surname}
+                            {record.user.name} {record.user.surname}
                           </p>
                         </div>
                       </div>
@@ -610,7 +610,7 @@ export default class ApprovedLeaveList extends Component<Props, State> {
                       <div className="row">
                         <div className="col">
                           <p>
-                            {record.user.othernames} {record.user.surname}
+                            {record.user.name} {record.user.surname}
                           </p>
                           <div className="form-group">
                             <label htmlFor="reason">Reason</label>
@@ -660,7 +660,7 @@ export default class ApprovedLeaveList extends Component<Props, State> {
     const items = approved_items
       .filter(
         e =>
-          e.user.othernames
+          e.user.name
             .toLowerCase()
             .includes(this.state.searchTerm.toLowerCase()) ||
           e.user.surname
@@ -668,12 +668,12 @@ export default class ApprovedLeaveList extends Component<Props, State> {
             .includes(this.state.searchTerm.toLowerCase())
       )
       .sort((a, b) => {
-        return a.user.othernames.localeCompare(b.user.othernames);
+        return a.user.name.localeCompare(b.user.name);
       })
       .map(data => (
         <tr key={data.id}>
           <td>
-            {data.user.othernames} {data.user.surname}
+            {data.user.name} {data.user.surname}
           </td>
           <td>{data.leaveName}</td>
           <td>{data.leaveType}</td>

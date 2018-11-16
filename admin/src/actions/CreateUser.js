@@ -40,7 +40,7 @@ export const submitNewUserRecord = (newUserDetails: Object) => async (
     dispatch(requestNewUserRecord(newUserDetails));
     const response = await axios.post('http://localhost:8080/adduser', {
       surname: newUserDetails.surname,
-      othernames: newUserDetails.othernames,
+      name: newUserDetails.name,
       email: newUserDetails.staffEmail,
       designation: newUserDetails.designation,
       annual: newUserDetails.annualDays,

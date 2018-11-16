@@ -19,9 +19,6 @@ const adminuserSchema = new Schema({
   },
   surname: {
     type: String
-  },
-  othernames: {
-    type: String
   }
 });
 

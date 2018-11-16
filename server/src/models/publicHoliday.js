@@ -4,7 +4,7 @@ mongoose.Promise = Promise;
 const Schema = mongoose.Schema;
 
 const publicHolidaySchema = new Schema({
-    holiday_date: {
+    holidayDate: {
     type: String,
     required: true
   }

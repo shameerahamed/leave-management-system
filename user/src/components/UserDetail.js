@@ -9,14 +9,14 @@ import '../spinners.css';
 const USER_DETAIL = gql`
   query($id: ID!) {
     user(id: $id) {
-      othernames
+      name
       surname
       annual
       sick
       bereavement
       familyCare
       christmas
-      maternity
+      maternity 
       paternity
       gender
     }
@@ -63,7 +63,7 @@ export default (props: Props) => (
             <div className="row">
               <div className="col-md-8">
                 <p style={{ fontSize: '30px' }}>
-                  {data.user.othernames} {data.user.surname}
+                  {data.user.name} {data.user.surname}
                 </p>
                 <p>
                   <Link to="/changepassword" className="btn btn-primary">

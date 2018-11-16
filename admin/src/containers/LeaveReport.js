@@ -36,7 +36,7 @@ const APPROVED_RECORD = gql`
       datePosted
       dateReviewed
       user {
-        othernames
+        name
         surname
         employeeNumber
       }
@@ -57,7 +57,7 @@ const PENDING_RECORD = gql`
       leaveReason
       datePosted
       user {
-        othernames
+        name
         surname
       }
     }
@@ -78,7 +78,7 @@ const CANCELLED_RECORD = gql`
       datePosted
       dateReviewed
       user {
-        othernames
+        name
         surname
       }
     }
@@ -99,7 +99,7 @@ const DECLINED_RECORD = gql`
       datePosted
       dateReviewed
       user {
-        othernames
+        name
         surname
       }
     }
@@ -123,7 +123,7 @@ const LEAVE_UPDATES_RECORD = gql`
       datePosted
       leaverecord {
         user {
-          othernames
+          name
           surname
         }
       }
@@ -135,7 +135,7 @@ const ACTIVE_USERS = gql`
   {
     findUsers(isArchived: "false") {
       id
-      othernames
+      name
       surname
       annual
       sick
@@ -167,7 +167,7 @@ const USER_UPDATES_RECORD = gql`
       editReason
       datePosted
       user {
-        othernames
+        name
         surname
       }
     }

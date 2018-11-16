@@ -12,18 +12,18 @@ const moment = require('moment');
 const PUBLIC_HOLIDAY = gql`
   {
     publicHoliday {
-      edges {
-        node {
-          id
-          holidayDate
-        }
-      }
+      id
+      holidayDate
     }
   }
 `;
 
+/*
+edges {
+        node {
+          */
 const ADD_PUBLIC_HOLIDAY = gql`
-  mutation addPublicholiday($holidayDate: String!) {
+  mutation p($holidayDate: String!) {
     addPublicholiday(holidayDate: $holidayDate) {
       publicHoliday {
         id
@@ -202,13 +202,14 @@ const PublicHolidays = (props: PublicHolidayProps) => (
         );
       }
 
-      let list = data.publicHoliday.edges.map(a => a.node).sort((b, c) => {
+      let list = data.publicHoliday.sort((b, c) => {  //edges.map(a =>)
         return new Date(c.holidayDate) - new Date(b.holidayDate);
       });
 
       const public_holidays = list.map(item => {
+        console.log("items " + item.holidayDate);
         let hDate = new Date(item.holidayDate);
-        let holiday_date = moment(hDate).format('dddd, Do MMMM YYYY');
+        let holiday_date = moment(hDate).format('DD-MMM-YYYY');
 
         return (
           <li key={item.id}>

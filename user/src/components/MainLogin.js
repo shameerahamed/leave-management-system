@@ -18,7 +18,7 @@ const LEAVE_RECORD = gql`
       endDate
       leaveDays
       user {
-        othernames
+        name
         surname
       }
     }
@@ -88,12 +88,12 @@ export default (props: Props) => (
           return isCurrentDate || isEndDate ? true : false;
         })
         .sort((a, b) => {
-          return a.user.othernames.localeCompare(b.user.othernames);
+          return a.user.name.localeCompare(b.user.name);
         })
         .map(data => (
           <tr key={data.id}>
             <td>
-              {data.user.othernames} {data.user.surname}
+              {data.user.name} {data.user.surname}
             </td>
             <td>{data.leaveName}</td>
             <td>{data.startDate}</td>

@@ -27,7 +27,6 @@ const APPROVED_RECORD = gql`
   {
     findLeaveRecord(leaveStatus: "approved", isArchived: "false") {
       id
-      dbId
       userId
       leaveName
       leaveType
@@ -39,7 +38,7 @@ const APPROVED_RECORD = gql`
       datePosted
       dateReviewed
       user {
-        othernames
+        name
         surname
         gender
         familyCare
@@ -53,12 +52,8 @@ const APPROVED_RECORD = gql`
 const PUBLIC_HOLIDAY = gql`
   {
     publicHoliday {
-      edges {
-        node {
-          id
-          holidayDate
-        }
-      }
+      id
+      holidayDate
     }
   }
 `;

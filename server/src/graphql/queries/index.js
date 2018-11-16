@@ -1,7 +1,11 @@
-import Users from './user';
+import {users, findUsers, findUserUpdates, user} from './user';
 import Adminusers from './adminuser';
-import PublicHolidays from './publicHoliday';
+import publicHoliday from './publicHoliday';
+import {findLeaveRecord, findLeaveUpdates, findSicksheetRecord} from './leave';
 
 export default {
-  Users, Adminusers, PublicHolidays
+  users, findUsers, findUserUpdates, user,
+  Adminusers, 
+  publicHoliday,
+  findLeaveRecord, findLeaveUpdates, findSicksheetRecord
 }

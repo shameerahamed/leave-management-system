@@ -20,8 +20,7 @@ const ACTIVE_USERS = gql`
   {
     findUsers(isArchived: "false") {
       id
-      dbId
-      othernames
+      name
       surname
       email
       annual
@@ -103,7 +102,7 @@ const UnArchiveLeave = props => (
               <div className="row">
                 <div className="col">
                   <p>
-                    {record.othernames} {record.surname}
+                    {record.name} {record.surname}
                   </p>
                 </div>
               </div>
@@ -197,13 +196,13 @@ export default class ArchivedStaffRecordList extends Component<Props, State> {
     const filteredElements = archived_staff_record
       .filter(
         e =>
-          e.othernames
+          e.name
             .toLowerCase()
             .includes(this.state.searchTerm.toLowerCase()) ||
           e.surname.toLowerCase().includes(this.state.searchTerm.toLowerCase())
       )
       .sort((a, b) => {
-        return a.othernames.localeCompare(b.othernames);
+        return a.name.localeCompare(b.name);
       })
       .map(record => {
         let dob = new Date(record.dateOfBirth);
@@ -215,7 +214,7 @@ export default class ArchivedStaffRecordList extends Component<Props, State> {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <p className="h5">
-                    {record.othernames} {record.surname}
+                    {record.name} {record.surname}
                   </p>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">

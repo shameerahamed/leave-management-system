@@ -1,7 +1,7 @@
 import {
 	GraphQLList, GraphQLString
 } from 'graphql'
-import adminuserModel from '../../../models/adminuser';
+import userModel from '../../../models/user';
 import { authPayload } from '../../types/authpayload';
 
 // Query

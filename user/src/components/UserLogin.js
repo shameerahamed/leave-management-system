@@ -16,8 +16,7 @@ const AUTHENTICATE_USER = gql`
   mutation authenticateUser($email: String!, $password: String!) {
     authenticateUser(email: $email, password: $password) {
       User {
-        id
-        dbId
+        id      
       }
       token
       ok
@@ -106,11 +105,11 @@ class Login extends Component<Props, State> {
         variables: { email, password }
       });
       localStorage.setItem('auth_token', response.data.authenticateUser.token);
-      localStorage.setItem('user_id', response.data.authenticateUser.User.dbId);
+      //localStorage.setItem('user_id', response.data.authenticateUser.User.dbId);
       localStorage.setItem('id', response.data.authenticateUser.User.id);
       const auth_info = {
         auth_token: response.data.authenticateUser.token,
-        user_id: response.data.authenticateUser.User.dbId,
+        //user_id: response.data.authenticateUser.User.dbId,
         id: response.data.authenticateUser.User.id
       };
       dispatch(receiveUserLogin(auth_info));
@@ -118,7 +117,7 @@ class Login extends Component<Props, State> {
       console.log(error);
       this.setState({ errorMessage: error.message });
       localStorage.removeItem('auth_token');
-      localStorage.removeItem('user_id');
+      //localStorage.removeItem('user_id');
       localStorage.removeItem('id');
       dispatch(loginUserError());
     }

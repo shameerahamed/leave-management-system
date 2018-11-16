@@ -28,7 +28,6 @@ const LEAVE_RECORD = gql`
   {
     findLeaveRecord(leaveStatus: "pending", isArchived: "false") {
       id
-      dbId
       leaveName
       leaveType
       startDate
@@ -37,7 +36,7 @@ const LEAVE_RECORD = gql`
       leaveReason
       leaveStatus
       user {
-        othernames
+        name
         surname
         gender
         familyCare
@@ -51,12 +50,8 @@ const LEAVE_RECORD = gql`
 const PUBLIC_HOLIDAY = gql`
   {
     publicHoliday {
-      edges {
-        node {
-          id
-          holidayDate
-        }
-      }
+      id
+      holidayDate
     }
   }
 `;

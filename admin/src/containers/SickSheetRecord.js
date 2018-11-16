@@ -31,7 +31,7 @@ const SICK_RECORD = gql`
       datePosted
       fileName
       user {
-        othernames
+        name
         surname
       }
     }

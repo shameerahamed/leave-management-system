@@ -23,8 +23,7 @@ const ARCHIVED_USERS = gql`
   {
     findUsers(isArchived: "true") {
       id
-      dbId
-      othernames
+      name
       surname
       email
       annual
@@ -111,7 +110,7 @@ const ArchiveUser = props => (
               <div className="row">
                 <div className="col">
                   <p>
-                    {record.othernames} {record.surname}
+                    {record.name} {record.surname}
                   </p>
                   <div className="form-group">
                     <label htmlFor="reason">Reason</label>
@@ -155,7 +154,6 @@ type Props = {
 type State = {
   errorMessage: string,
   id: string,
-  dbid: string,
   dob: any,
   archiveReason: any,
   isEditing: boolean,
@@ -177,7 +175,7 @@ export default class StaffRecordList extends Component<Props, State> {
   handleClearSearch: Function;
 
   surname: any;
-  othernames: any;
+  name: any;
   designation: any;
   email: any;
   annual: any;
@@ -196,7 +194,6 @@ export default class StaffRecordList extends Component<Props, State> {
     this.state = {
       errorMessage: '',
       id: '',
-      dbid: '',
       dob: null,
       archiveReason: null,
       editReason: '',
@@ -243,9 +240,9 @@ export default class StaffRecordList extends Component<Props, State> {
 
   handleSubmit(e: Event) {
     e.preventDefault();
-    const dbid = this.state.dbid;
+    const dbid = this.state.id;
     const surname = this.surname.value;
-    const othernames = this.othernames.value;
+    const name = this.name.value;
     const staffEmail = this.email.value;
     const designation = this.designation.value;
     const annualDays = this.annual.value;
@@ -281,9 +278,8 @@ export default class StaffRecordList extends Component<Props, State> {
 
     // verify data
     if (
-      !dbid ||
       !surname ||
-      !othernames ||
+      !name ||
       !staffEmail ||
       !designation ||
       !annualDays ||
@@ -304,9 +300,9 @@ export default class StaffRecordList extends Component<Props, State> {
 
     // prepare data to post to database
     const modifyUserDetails = {
-      dbid: dbid,
+      id: dbid,
       surname: surname,
-      othernames: othernames,
+      name: name,
       staffEmail: staffEmail,
       designation: designation,
       annualDays: annualDays,
@@ -401,12 +397,12 @@ export default class StaffRecordList extends Component<Props, State> {
                           </div>
                           <div className="col-md-6">
                             <div className="form-group">
-                              <label htmlFor="otherNames">Other Names</label>
+                              <label htmlFor="name">Other Names</label>
                               <input
                                 type="text"
                                 className="form-control"
-                                defaultValue={record.othernames}
-                                ref={input => (this.othernames = input)}
+                                defaultValue={record.name}
+                                ref={input => (this.name = input)}
                               />
                             </div>
                           </div>
@@ -651,13 +647,13 @@ export default class StaffRecordList extends Component<Props, State> {
     const filteredElements = staff_record
       .filter(
         e =>
-          e.othernames
+          e.name
             .toLowerCase()
             .includes(this.state.searchTerm.toLowerCase()) ||
           e.surname.toLowerCase().includes(this.state.searchTerm.toLowerCase())
       )
       .sort((a, b) => {
-        return a.othernames.localeCompare(b.othernames);
+        return a.name.localeCompare(b.name);
       })
       .map(record => {
         let dob = new Date(record.dateOfBirth);
@@ -669,7 +665,7 @@ export default class StaffRecordList extends Component<Props, State> {
               <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <p className="h5">
-                    {record.othernames} {record.surname}
+                    {record.name} {record.surname}
                   </p>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">

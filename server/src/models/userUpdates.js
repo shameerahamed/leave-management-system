@@ -3,22 +3,7 @@ mongoose.Promise = Promise;
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  email: {
-    type: String,
-    required: false
-  },
-  password: {
-    type: String,
-    required: false
-  },
-  surname: {
-    type: String
-  },
+const userUpdatesSchema = new Schema({
   annual: {
     type: Number
   },
@@ -52,12 +37,18 @@ const userSchema = new Schema({
   employeeNumber: {
     type: Number
   },
-  isArchived: {
-    type: Boolean
+  editReason: {
+      type: String
   },
-  archiveReason: {
-    type: String
+  datePosted: {
+      type: String
+  },
+  reviewedBy: {
+      type: String
+  },
+  userId: {
+      type: String
   }
 });
 
-export default mongoose.model('user', userSchema);
+export default mongoose.model('userUpdates', userUpdatesSchema);

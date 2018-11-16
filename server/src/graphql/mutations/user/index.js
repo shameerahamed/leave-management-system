@@ -1,9 +1,10 @@
-import addUser from './add';
-import removeUser from './remove';
-import updateUser from './update';
+import {addUser, removeUser, updateUser} from './actions';
+import {archiveUser, unArchiveUser} from './archives';
 
 export default {
   addUser,
   removeUser,
-  updateUser
+  updateUser,
+  archiveUser,
+  unArchiveUser
 }

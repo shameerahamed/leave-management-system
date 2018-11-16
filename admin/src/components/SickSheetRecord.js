@@ -9,7 +9,7 @@ export default (props: Props) => {
   const itemNodes = props.sickSheet_items.map(record => (
     <tr key={record.id}>
       <td>
-        {record.user.othernames} {record.user.surname}
+        {record.user.name} {record.user.surname}
       </td>
       <td>{record.startDate}</td>
       <td>{record.endDate}</td>

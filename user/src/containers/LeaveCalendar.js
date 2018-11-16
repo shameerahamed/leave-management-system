@@ -14,7 +14,7 @@ const LeaveRecord = gql`
       endDate
       leaveDays
       user {
-        othernames
+        name
         surname
       }
     }

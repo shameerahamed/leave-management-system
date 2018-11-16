@@ -26,8 +26,7 @@ const ACTIVE_USERS = gql`
   {
     findUsers(isArchived: "false") {
       id
-      dbId
-      othernames
+      name
       surname
       email
       annual

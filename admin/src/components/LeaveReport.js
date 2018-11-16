@@ -7,13 +7,13 @@ const moment = require('moment');
 
 const ApprovedLeaveReportList = props => {
   const approvedRecord = props.approved_record.map(a => a).sort((a, b) => {
-    return a.user.othernames.localeCompare(b.user.othernames);
+    return a.user.name.localeCompare(b.user.name);
   });
 
   const approvedRecordItems = approvedRecord.map(record => (
     <tr key={record.id}>
       <td>
-        {record.user.othernames} {record.user.surname}
+        {record.user.name} {record.user.surname}
       </td>
       <td>{record.leaveName}</td>
       <td>{record.leaveType}</td>
@@ -29,7 +29,7 @@ const ApprovedLeaveReportList = props => {
 
   const records = approvedRecord.map(a => {
     var rObj = {};
-    rObj['Othernames'] = a.user.othernames;
+    rObj['name'] = a.user.name;
     rObj['Surname'] = a.user.surname;
     rObj['Employee #'] = a.user.employeeNumber;
     rObj['Leave'] = a.leaveName;
@@ -87,13 +87,13 @@ const ApprovedLeaveReportList = props => {
 
 const PendingLeaveReportList = props => {
   const pendingRecord = props.pending_record.map(a => a).sort((a, b) => {
-    return a.user.othernames.localeCompare(b.user.othernames);
+    return a.user.name.localeCompare(b.user.name);
   });
 
   const pendingRecordItems = pendingRecord.map(record => (
     <tr key={record.id}>
       <td>
-        {record.user.othernames} {record.user.surname}
+        {record.user.name} {record.user.surname}
       </td>
       <td>{record.leaveName}</td>
       <td>{record.leaveType}</td>
@@ -108,7 +108,7 @@ const PendingLeaveReportList = props => {
 
   const records = pendingRecord.map(a => {
     var rObj = {};
-    rObj['Othernames'] = a.user.othernames;
+    rObj['name'] = a.user.name;
     rObj['Surname'] = a.user.surname;
     rObj['Leave'] = a.leaveName;
     rObj['Type'] = a.leaveType;
@@ -163,13 +163,13 @@ const PendingLeaveReportList = props => {
 
 const CancelledLeaveReportList = props => {
   const cancelledRecord = props.cancelled_record.map(a => a).sort((a, b) => {
-    return a.user.othernames.localeCompare(b.user.othernames);
+    return a.user.name.localeCompare(b.user.name);
   });
 
   const cancelledRecordItems = cancelledRecord.map(record => (
     <tr key={record.id}>
       <td>
-        {record.user.othernames} {record.user.surname}
+        {record.user.name} {record.user.surname}
       </td>
       <td>{record.leaveName}</td>
       <td>{record.leaveType}</td>
@@ -185,7 +185,7 @@ const CancelledLeaveReportList = props => {
 
   const records = cancelledRecord.map(a => {
     var rObj = {};
-    rObj['Othernames'] = a.user.othernames;
+    rObj['name'] = a.user.name;
     rObj['Surname'] = a.user.surname;
     rObj['Leave'] = a.leaveName;
     rObj['Type'] = a.leaveType;
@@ -242,13 +242,13 @@ const CancelledLeaveReportList = props => {
 
 const DeclinedLeaveReportList = props => {
   const declinedRecord = props.declined_record.map(a => a).sort((a, b) => {
-    return a.user.othernames.localeCompare(b.user.othernames);
+    return a.user.name.localeCompare(b.user.name);
   });
 
   const declinedRecordItems = declinedRecord.map(record => (
     <tr key={record.id}>
       <td>
-        {record.user.othernames} {record.user.surname}
+        {record.user.name} {record.user.surname}
       </td>
       <td>{record.leaveName}</td>
       <td>{record.leaveType}</td>
@@ -264,7 +264,7 @@ const DeclinedLeaveReportList = props => {
 
   const records = declinedRecord.map(a => {
     var rObj = {};
-    rObj['Othernames'] = a.user.othernames;
+    rObj['name'] = a.user.name;
     rObj['Surname'] = a.user.surname;
     rObj['Leave'] = a.leaveName;
     rObj['Type'] = a.leaveType;
@@ -328,7 +328,7 @@ const LeaveUpdatesReportList = props => {
     <tr key={record.id}>
       <td>{record.leaveId}</td>
       <td>
-        {record.leaverecord.user.othernames} {record.leaverecord.user.surname}
+        {record.leaverecord.user.name} {record.leaverecord.user.surname}
       </td>
       <td>{record.previousStartDate}</td>
       <td>{record.previousEndDate}</td>
@@ -345,7 +345,7 @@ const LeaveUpdatesReportList = props => {
 
   const records = props.leave_updates.map(a => {
     var rObj = {};
-    rObj['Othernames'] = a.leaverecord.user.othernames;
+    rObj['name'] = a.leaverecord.user.name;
     rObj['Surname'] = a.leaverecord.user.surname;
     rObj['Previous start date'] = a.previousStartDate;
     rObj['Previous end date'] = a.previousEndDate;
@@ -405,13 +405,13 @@ const LeaveUpdatesReportList = props => {
 
 const StaffRecordList = props => {
   const staffRecordList = props.staff_record.map(a => a).sort((a, b) => {
-    return a.othernames.localeCompare(b.othernames);
+    return a.name.localeCompare(b.name);
   });
 
   const staffRecordItems = staffRecordList.map(record => (
     <tr key={record.id}>
       <td>
-        {record.othernames} {record.surname}
+        {record.name} {record.surname}
       </td>
       <td>{record.annual}</td>
       <td>{record.sick}</td>
@@ -426,7 +426,7 @@ const StaffRecordList = props => {
 
   const records = staffRecordList.map(a => {
     var rObj = {};
-    rObj['Othernames'] = a.othernames;
+    rObj['name'] = a.name;
     rObj['Surname'] = a.surname;
     rObj['Annual'] = a.annual;
     rObj['Sick'] = a.sick;
@@ -491,7 +491,7 @@ const UserUpdatesReportList = props => {
     return (
       <tr key={record.id}>
         <td>
-          {record.user.othernames} {record.user.surname}
+          {record.user.name} {record.user.surname}
         </td>
         <td>{record.annual}</td>
         <td>{record.sick}</td>
@@ -510,7 +510,7 @@ const UserUpdatesReportList = props => {
 
   const records = props.user_updates.map(a => {
     var rObj = {};
-    rObj['Othernames'] = a.user.othernames;
+    rObj['name'] = a.user.name;
     rObj['Surname'] = a.user.surname;
     rObj['Annual'] = a.annual;
     rObj['Sick'] = a.sick;

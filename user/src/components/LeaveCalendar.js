@@ -42,7 +42,7 @@ export default (props: Props) => {
     .map(data => (
       <tr key={data.id}>
         <td>
-          {data.user.othernames} {data.user.surname}
+          {data.user.name} {data.user.surname}
         </td>
         <td>{data.leaveName}</td>
         <td>{data.startDate}</td>

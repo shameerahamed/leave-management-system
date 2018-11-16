@@ -1,11 +1,10 @@
-import addAdminuser from './add';
-import removeAdminuser from './remove';
-import updateAdminuser from './update';
-import authenticateAdmin from './login';
+import {addAdminuser, updateAdminuser, removeAdminuser} from './actions';
+import {authenticateAdmin, verifyAdminToken} from './login';
 
 export default {
   addAdminuser,
   removeAdminuser,
   updateAdminuser,
-  authenticateAdmin
+  authenticateAdmin,
+  verifyAdminToken
 }

@@ -17,7 +17,7 @@ type State = {
   errorMessage: string,
   successMessage: string,
   surname: string,
-  otherNames: string,
+  name: string,
   annualLeave: string,
   staffEmail: string,
   designation: string,
@@ -35,7 +35,7 @@ type State = {
 
 export default class CreateUserForm extends Component<Props, State> {
   handleSurnameChange: Function;
-  handleOtherNamesChange: Function;
+  handlenameChange: Function;
   handleStaffEmailChange: Function;
   handleDesignationChange: Function;
   handleGenderChange: Function;
@@ -56,7 +56,7 @@ export default class CreateUserForm extends Component<Props, State> {
       errorMessage: '',
       successMessage: '',
       surname: '',
-      otherNames: '',
+      name: '',
       annualLeave: '',
       staffEmail: '',
       designation: '',
@@ -72,7 +72,7 @@ export default class CreateUserForm extends Component<Props, State> {
     };
 
     this.handleSurnameChange = this.handleSurnameChange.bind(this);
-    this.handleOtherNamesChange = this.handleOtherNamesChange.bind(this);
+    this.handlenameChange = this.handlenameChange.bind(this);
     this.handleStaffEmailChange = this.handleStaffEmailChange.bind(this);
     this.handleDesignationChange = this.handleDesignationChange.bind(this);
     this.handleGenderChange = this.handleGenderChange.bind(this);
@@ -104,8 +104,8 @@ export default class CreateUserForm extends Component<Props, State> {
     this.setState({ surname: target.value });
   }
 
-  handleOtherNamesChange({ target }: SyntheticInputEvent<>) {
-    this.setState({ otherNames: target.value });
+  handlenameChange({ target }: SyntheticInputEvent<>) {
+    this.setState({ name: target.value });
   }
 
   handleStaffEmailChange({ target }: SyntheticInputEvent<>) {
@@ -159,7 +159,7 @@ export default class CreateUserForm extends Component<Props, State> {
   handleSubmit(e: Event) {
     e.preventDefault();
     const surname = this.state.surname;
-    const othernames = this.state.otherNames;
+    const name = this.state.name;
     const staffEmail = this.state.staffEmail;
     const designation = this.state.designation;
     const gender = this.state.gender;
@@ -180,7 +180,7 @@ export default class CreateUserForm extends Component<Props, State> {
     // verify data
     if (
       !surname ||
-      !othernames ||
+      !name ||
       !staffEmail ||
       !designation ||
       !annualDays ||
@@ -204,7 +204,7 @@ export default class CreateUserForm extends Component<Props, State> {
       errorMessage: '',
       successMessage: '',
       surname: '',
-      otherNames: '',
+      name: '',
       annualLeave: '',
       staffEmail: '',
       designation: '',
@@ -222,7 +222,7 @@ export default class CreateUserForm extends Component<Props, State> {
     // prepare data to post to database
     const newUserDetails = {
       surname: surname,
-      othernames: othernames,
+      name: name,
       staffEmail: staffEmail,
       designation: designation,
       annualDays: annualDays,
@@ -266,14 +266,14 @@ export default class CreateUserForm extends Component<Props, State> {
                 </div>
                 <div className="col-md-6">
                   <div className="form-group">
-                    <label htmlFor="otherNames">Other Names</label>
+                    <label htmlFor="name">Other Names</label>
                     <input
                       type="text"
                       className="form-control"
                       placeholder="Other Names"
-                      id="otherNames"
-                      value={this.state.otherNames}
-                      onChange={this.handleOtherNamesChange}
+                      id="name"
+                      value={this.state.name}
+                      onChange={this.handlenameChange}
                     />
                   </div>
                 </div>

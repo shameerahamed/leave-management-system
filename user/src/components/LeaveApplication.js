@@ -16,8 +16,8 @@ const moment = extendMoment(Moment);
 const USER_DETAIL = gql`
   query($id: ID!) {
     user(id: $id) {
-      dbId
-      othernames
+      id
+      name
       surname
       annual
       sick
@@ -36,17 +36,14 @@ const USER_RECORD = gql`
   query($id: ID!) {
     user(id: $id) {
       leaverecord {
-        edges {
-          node {
-            id
-            leaveName
-            leaveDays
-            startDate
-            endDate
-            leaveReason
-            leaveStatus
-          }
-        }
+       id
+        leaveName
+        leaveDays
+        startDate
+        endDate
+       leaveReason
+       leaveStatus
+        
       }
     }
   }
@@ -55,6 +52,14 @@ const USER_RECORD = gql`
 const PUBLIC_HOLIDAY = gql`
   {
     publicHoliday {
+      holidayDate
+    }
+  }
+`;
+
+/*
+{
+    publicHoliday {
       edges {
         node {
           holidayDate
@@ -62,11 +67,11 @@ const PUBLIC_HOLIDAY = gql`
       }
     }
   }
-`;
+*/
 
 const UserName = props => (
   <p>
-    {props.user_detail.othernames} {props.user_detail.surname}
+    {props.user_detail.name} {props.user_detail.surname}
   </p>
 );
 
@@ -232,7 +237,7 @@ class LeaveApplication extends Component<
       refetch
     } = this.props;
 
-    const user_id = user_detail.dbId;
+    const user_id = user_detail.id;
     const annualDays = user_detail.annual;
     const sickDays = user_detail.sick;
     const bereavementDays = user_detail.bereavement;

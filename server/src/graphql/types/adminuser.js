@@ -28,9 +28,6 @@ export const adminuserType = new GraphQLObjectType({
       },
       surname: {
         type: GraphQLString
-      },
-      othernames: {
-        type: GraphQLString
       }
     }
   }
@@ -44,7 +41,10 @@ export const adminuserInputType = new GraphQLInputObjectType({
 		},
 		password: {
 			type: GraphQLString
-		}
+    },
+    isArchived: {
+      type: GraphQLBoolean
+    }
 	})
 });
 

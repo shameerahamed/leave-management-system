@@ -26,9 +26,9 @@ export const submitModifyUserRecord = (modifyUserDetails: Object) => async (
   try {
     dispatch(requestModifyUserRecord(modifyUserDetails));
     const response = await axios.post('http://localhost:8080/modifyuser', {
-      user_id: modifyUserDetails.dbid,
+      user_id: modifyUserDetails.id,
       surname: modifyUserDetails.surname,
-      othernames: modifyUserDetails.othernames,
+      name: modifyUserDetails.name,
       email: modifyUserDetails.staffEmail,
       designation: modifyUserDetails.designation,
       annual: modifyUserDetails.annualDays,

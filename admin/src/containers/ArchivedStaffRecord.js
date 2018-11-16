@@ -25,8 +25,7 @@ const ARCHIVED_USERS = gql`
   {
     findUsers(isArchived: "true") {
       id
-      dbId
-      othernames
+      name
       surname
       email
       annual

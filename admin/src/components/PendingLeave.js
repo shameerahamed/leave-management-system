@@ -51,7 +51,7 @@ class ApproveLeave extends Component<approveProps, approveState> {
 
     const userRecord = pending_items.filter(e => e.id === listID);
 
-    const leaveID = userRecord[0].dbId;
+    const leaveID = userRecord[0].id;
     const leaveDays = userRecord[0].leaveDays;
     const leaveName = userRecord[0].leaveName;
     const adminUser = localStorage.getItem('admin_user');
@@ -87,7 +87,7 @@ class ApproveLeave extends Component<approveProps, approveState> {
                 <h5 className="card-header">Approve</h5>
                 <div className="card-body">
                   <p>
-                    {record.user.othernames} {record.user.surname}
+                    {record.user.name} {record.user.surname}
                   </p>
                   <div className="row">
                     <div className="col-md-6">
@@ -224,7 +224,7 @@ class DeclineLeave extends Component<declineProps, declineState> {
       return;
     }
     const userRecord = pending_items.filter(e => e.id === listID);
-    const leaveID = userRecord[0].dbId;
+    const leaveID = userRecord[0].id;
     const adminUser = localStorage.getItem('admin_user');
 
     const declineLeaveData = {
@@ -257,7 +257,7 @@ class DeclineLeave extends Component<declineProps, declineState> {
                 <h5 className="card-header">Decline</h5>
                 <div className="card-body">
                   <p>
-                    {record.user.othernames} {record.user.surname}
+                    {record.user.name} {record.user.surname}
                   </p>
                   <div className="row">
                     <div className="col-md-6">
@@ -436,7 +436,7 @@ class EditLeave extends Component<editProps, editState> {
       userRecord[0].user.paternity && userRecord[0].user.paternity;
     const dateOfBirth = userRecord[0].user.date_of_birth;
 
-    const leaveID = userRecord[0].dbId;
+    const leaveID = userRecord[0].id;
     const previousLeaveDays = userRecord[0].leaveDays;
     const previousLeaveName = userRecord[0].leaveName;
     const previousLeaveType = userRecord[0].leaveType;
@@ -613,7 +613,7 @@ class EditLeave extends Component<editProps, editState> {
                 <h5 className="card-header">Edit</h5>
                 <div className="card-body">
                   <p>
-                    {record.user.othernames} {record.user.surname}
+                    {record.user.name} {record.user.surname}
                   </p>
                   <form
                     encType="multipart/form-data"
@@ -928,13 +928,13 @@ export default class PendingLeaveList extends Component<Props, State> {
     }
 
     const items = this.props.pending_items.map(a => a).sort((a, b) => {
-      return a.user.othernames.localeCompare(b.user.othernames);
+      return a.user.name.localeCompare(b.user.name);
     });
 
     const itemNodes = items.map(record => (
       <tr key={record.id}>
         <td>
-          {record.user.othernames} {record.user.surname}
+          {record.user.name} {record.user.surname}
         </td>
         <td>{record.leaveName}</td>
         <td>{record.leaveType}</td>

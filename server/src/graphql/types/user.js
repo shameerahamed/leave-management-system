@@ -6,8 +6,11 @@ import {
   GraphQLInt,
 	GraphQLID,
   GraphQLList,
-  GraphQLBoolean
+  Node
 } from 'graphql'; 
+//import { leaveType } from './leave';
+
+//import LeaveModel from '../../models/leave';
 
 // User Type
 export const userType = new GraphQLObjectType({
@@ -29,9 +32,6 @@ export const userType = new GraphQLObjectType({
       surname: {
         type: GraphQLString
       },
-      othernames: {
-        type: GraphQLString
-      },
       annual: {
         type: GraphQLInt
       },
@@ -41,7 +41,7 @@ export const userType = new GraphQLObjectType({
       bereavement: {
         type: GraphQLInt
       },
-      family_care: {
+      familyCare: {
         type: GraphQLInt
       },
       christmas: {
@@ -59,18 +59,28 @@ export const userType = new GraphQLObjectType({
       gender: {
         type: GraphQLString
       },
-      date_of_birth: {
+      dateOfBirth: {
         type: GraphQLString
       },
-      employee_number: {
+      employeeNumber: {
         type: GraphQLInt
       },
-      is_archived: {
-        type: GraphQLBoolean
-      },
-      archive_reason: {
+      isArchived: {
         type: GraphQLString
-      }
+      },
+      archiveReason: {
+        type: GraphQLString
+      },
+      /*leaverecords: {
+        type: leaveType,
+        resolve: function(user, params) {
+          const leaves =  LeaveModel.find({userId: user.id}).exec()
+          if (!leaves) {
+            return new Error('Error in retriving leaveRecord')
+          }
+          return leaves;
+        }
+      }*/
     }
   }
 });
@@ -83,7 +93,16 @@ export const userInputType = new GraphQLInputObjectType({
 		},
 		name: {
 			type: GraphQLString
-		}
+    },
+    isArchived: {
+      type: GraphQLString
+    },
+    dateOfBirth: {
+      type: GraphQLString
+    },
+    gender: {
+      type: GraphQLString
+    }
 	})
 });
 

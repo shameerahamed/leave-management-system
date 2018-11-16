@@ -1,12 +1,8 @@
 import {
 	GraphQLObjectType,
-	GraphQLInputObjectType,
 	GraphQLNonNull,
 	GraphQLString,
-  GraphQLInt,
 	GraphQLID,
-  GraphQLList,
-  GraphQLBoolean
 } from 'graphql'; 
 
 // User Type
@@ -17,7 +13,7 @@ export const publicHolidayType = new GraphQLObjectType({
       id: {
         type: new GraphQLNonNull(GraphQLID)
       },
-      holiday_date: {
+      holidayDate: {
           type: GraphQLString
       }
     }
