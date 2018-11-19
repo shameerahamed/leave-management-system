@@ -16,10 +16,10 @@ export const users = {
     }
     return users
   }
-}
+};
 
 export const user = {
-  type: new GraphQLObjectType(userType),
+  type: userType,
   args: {
     id: {
 			name: 'ID',
@@ -27,7 +27,7 @@ export const user = {
 		}
   },
   resolve: function(root, params) {
-    const user = userModel.findById(params).exec()
+    const user = userModel.findById(params.id).exec()
 
     if (!user) {
       throw new Error ('Error in getting user')

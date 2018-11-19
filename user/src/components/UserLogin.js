@@ -106,6 +106,7 @@ class Login extends Component<Props, State> {
       });
       localStorage.setItem('auth_token', response.data.authenticateUser.token);
       //localStorage.setItem('user_id', response.data.authenticateUser.User.dbId);
+      console.log('User ' + response.data.authenticateUser.User);
       localStorage.setItem('id', response.data.authenticateUser.User.id);
       const auth_info = {
         auth_token: response.data.authenticateUser.token,

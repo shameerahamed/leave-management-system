@@ -1,5 +1,5 @@
 import {
-	GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLList
+	GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLInputObjectType
 } from 'graphql'; 
 
 import {userType} from './user'
@@ -63,4 +63,46 @@ export const leaveType = new GraphQLObjectType({
             }
         }
     }
+});
+
+export const leaveInputType = new GraphQLInputObjectType({
+    name: "LeaveInputType",
+    fields: () => ({
+        userId: {
+            type: GraphQLString
+        },
+        leaveName: {
+            type: GraphQLString
+        },
+        leaveType: {
+            type: GraphQLString
+        },
+        startDate: {
+            type: GraphQLString
+        },
+        endDate: {
+            type: GraphQLString
+        },
+        supervisorEmail: {
+            type: GraphQLString
+        },
+        secretaryEmail: {
+            type: GraphQLString
+        },
+        leaveDays: {
+            type: GraphQLInt
+        },
+        applicationDays: {
+            type: GraphQLInt
+        },
+        leaveReason: {
+            type: GraphQLString
+        },
+        sickSheet: {
+            type: GraphQLString
+        },
+        designation: {
+            type: GraphQLString
+        }
+    })
 });

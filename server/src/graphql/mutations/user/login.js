@@ -2,12 +2,12 @@ import {
 	GraphQLList, GraphQLString
 } from 'graphql'
 import userModel from '../../../models/user';
-import { authPayload } from '../../types/authpayload';
+import { userPayload } from '../../types/userPayload';
 
 // Query
 
-export const authenticateAdmin = {
-  type: authPayload,
+export const authenticateUser = {
+  type: userPayload,
   args: {
     email: {
         name: 'email',
@@ -19,26 +19,39 @@ export const authenticateAdmin = {
     }
   },
   resolve: function (root, params) {
-    const adminuser = adminuserModel.findOne({email: params.email, password: params.password})
-    if (!adminuser) {
-      throw new Error('Error in retriving admin user')
-    }
-    var token = new Date().getTime()
-    return {token: token, ok: true, Admin:  adminuser};
+    var ok = true;
+    var token = "";
+    const user = userModel.findOne({email: params.email, password: params.password}, function(err, response){
+      console.log('user' + response.email);
+      token = response.id;
+      if (err) {
+        ok = false;
+      throw new Error('Error in retriving user')
+      }
+    });
+    return {token: token, ok: ok, User:  user};
   }
 }
 
-export const verifyAdminToken = {
-  type: authPayload,
+export const verifyUserToken = {
+  type: userPayload,
   args: {
-    adminToken: {
-      name: 'adminToken',
+    userToken: {
+      name: 'userToken',
       type: GraphQLString
     }
   },
   resolve: function(root, params) {
-    if(params.adminToken != null) {
-      return {token: params.adminToken, ok: true}
+    var ok = true;
+    if(params.userToken != null) {
+
+      const user = userModel.findById(params.userToken).exec();
+
+      if(!user) {
+        ok = false;
+        throw new Error('Error in verifying User Token');
+      }
+      return {token: params.userToken, ok: ok, User: user}
     }
   }
 }

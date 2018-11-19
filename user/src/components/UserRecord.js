@@ -9,24 +9,20 @@ const USER_RECORD = gql`
   query($id: ID!) {
     user(id: $id) {
       leaverecord {
-        edges {
-          node {
-            id
-            leaveName
-            leaveDays
-            startDate
-            endDate
-            leaveReason
-            leaveStatus
-          }
-        }
+        id
+        leaveName
+        leaveDays
+        startDate
+        endDate
+        leaveReason
+        leaveStatus
       }
     }
   }
 `;
 
 const ApprovedRecordList = props => {
-  const approvedList = props.user_record.leaverecord.edges
+  const approvedList = props.user_record.leaverecord//.edges
     .filter(data => data.node.leaveStatus === 'approved')
     .map(record => (
       <tr key={record.node.id}>
@@ -59,7 +55,7 @@ const ApprovedRecordList = props => {
 };
 
 const PendingRecordList = props => {
-  const pendingList = props.user_record.leaverecord.edges
+  const pendingList = props.user_record.leaverecord//.edges
     .filter(data => data.node.leaveStatus === 'pending')
     .map(record => (
       <tr key={record.node.id}>

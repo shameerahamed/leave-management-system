@@ -307,9 +307,9 @@ class LeaveApplication extends Component<
     );
 
     // exclude public holidays
-    const publicHolidays = this.props.public_holiday.edges.map(item => {
-      let hDate = new Date(item.node.holidayDate);
-      let holiday_date = moment(hDate).format('DD, MM, YYYY');
+    const publicHolidays = this.props.public_holiday.map(item => {
+      let hDate = new Date(item.holidayDate);
+      let holiday_date = moment(hDate).format('DD-MMM-YYYY');
       return holiday_date;
     });
 
@@ -353,7 +353,7 @@ class LeaveApplication extends Component<
         : leaveDays;
 
     // get total of approved single sick leave days
-    const approvedSingleSickLeaves = user_record.leaverecord.edges.filter(
+    const approvedSingleSickLeaves = user_record.leaverecord.filter(
       e =>
         e.node.leaveStatus === 'approved' &&
         e.node.leaveName === 'sick' &&

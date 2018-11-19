@@ -1,14 +1,12 @@
-import { userpayload} from '../../types/userpayload';
+import { userPayload} from '../../types/userPayload';
 import {
 	GraphQLNonNull, GraphQLID, GraphQLString
 } from 'graphql';
 
-import { userType, userInputType} from '../../types/user';
-
 import UserModel from '../../../models/user';
 
 export const unArchiveUser = {
-    type: userpayload,
+    type: userPayload,
     args: {
       id: {
               name: 'ID',
@@ -29,7 +27,7 @@ export const unArchiveUser = {
   }
 
   export const archiveUser = {
-      type: userpayload,
+      type: userPayload,
       args: {
           id: {
               name: 'ID',

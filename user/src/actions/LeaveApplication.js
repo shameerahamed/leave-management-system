@@ -1,5 +1,25 @@
 // @flow
 import axios from 'axios';
+import { gql } from 'apollo-boost';
+
+const APPLY_LEAVE = gql`
+  mutation($id: ID!) {
+    user(id: $id) {
+      id
+      name
+      surname
+      annual
+      sick
+      bereavement
+      christmas
+      maternity
+      familyCare
+      paternity
+      gender
+      designation
+    }
+  }
+`;
 
 export const LEAVE_APPLICATION_REQUEST = 'LEAVE_APPLICATION_REQUEST';
 export const LEAVE_APPLICATION_SUCCESS = 'LEAVE_APPLICATION_SUCCESS';
@@ -31,8 +51,8 @@ export const fetchLeaveApplication = (applicationDetails: Object) => async (
     dispatch(requestLeaveApplication(applicationDetails));
 
     let data = new FormData();
-    data.append('user_id', applicationDetails.user_id);
-    data.append('leave', applicationDetails.leave);
+    data.append('userId', applicationDetails.user_id);
+    data.append('leaveName', applicationDetails.leave);
     data.append('leaveType', applicationDetails.leaveType);
     data.append('startDate', applicationDetails.startDate);
     data.append('endDate', applicationDetails.endDate);

@@ -48,4 +48,4 @@ const leaveSchema = new Schema({
     }
 });
 
-export default mongoose.model('leave', leaveSchema);
+export default mongoose.model('leaverecord', leaveSchema);

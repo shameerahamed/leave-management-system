@@ -1,10 +1,10 @@
 import {
-	GraphQLObjectType, GraphQLBoolean
+	GraphQLObjectType, GraphQLBoolean, GraphQLString
 } from 'graphql'; 
 
 import {userType} from './user'
 
-export const userpayload = new GraphQLObjectType({
+export const userPayload = new GraphQLObjectType({
     name: 'UserPayload',
     fields: function () {
         return {
@@ -13,6 +13,9 @@ export const userpayload = new GraphQLObjectType({
             },
             ok: {
                 type: GraphQLBoolean
+            },
+            token: {
+                type: GraphQLString
             }
         }
     }

@@ -7,6 +7,16 @@ import leaveModel from '../../models/leave';
 import leaveUpdatesModel from '../../models/leaveUpdates';
 
 // Query
+export const leaveRecords = {
+  type: new GraphQLList(leaveType),
+  resolve: function () {
+    const leaves = leaveModel.find().exec()
+    if (!leaves) {
+      throw new Error('Error getting leaves')
+    }
+    return leaves
+  }
+};
 
 export const findLeaveRecord = {
   type: new GraphQLList(leaveType),
@@ -21,10 +31,14 @@ export const findLeaveRecord = {
     }
   },
   resolve: function (root, params) {
-    const leaves = leaveModel.find(params).exec();
-    if (!leaves) {
-      throw new Error('Error in retriving leaveRecord');
-    }
+    const leaves = leaveModel.find({"leaveStatus": params.leaveStatus}, function(err, docs){
+      if (!docs) {
+        throw new Error('Error in retriving leaveRecord');
+      }
+      console.log(docs);
+      return docs;
+    });
+    
     return leaves;
   }
 };
