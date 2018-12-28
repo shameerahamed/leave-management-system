@@ -72,15 +72,19 @@ export const userType = new GraphQLObjectType({
       },
       leaverecord: {
         type: new GraphQLList(leaveType),
-        resolve: function(user, params) {
-          console.log('userId ' + user.id);
-          const leaves =  LeaveModel.find({userId: user.id}, function (err, docs) {
-            if(!docs) {
-              return new Error('Error in retriving leaveRecord ' + err);
-            }
-            console.log(docs);
-            return docs;
+        resolve: async function(user, params) {
+          return new Promise((resolve, reject) => {
+            console.log('userId ' + user.id);
+            const leaves =  LeaveModel.find({userId: user.id}, function (err, docs) {
+              if(err) {
+                return reject(err);
+                //return new Error('Error in retriving leaveRecord ' + err);
+              }
+              //console.log(docs);
+              return resolve(docs);
+            });
           });
+          
         }
       }
     }

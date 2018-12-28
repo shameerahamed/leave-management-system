@@ -23,14 +23,14 @@ const USER_RECORD = gql`
 
 const ApprovedRecordList = props => {
   const approvedList = props.user_record.leaverecord//.edges
-    .filter(data => data.node.leaveStatus === 'approved')
+    .filter(data => data.leaveStatus === 'approved') //data.node.leaveStatus =
     .map(record => (
-      <tr key={record.node.id}>
-        <td>{record.node.leaveName}</td>
-        <td>{record.node.leaveDays}</td>
-        <td>{record.node.startDate}</td>
-        <td>{record.node.endDate}</td>
-        <td>{record.node.leaveReason}</td>
+      <tr key={record.id}>
+        <td>{record.leaveName}</td>
+        <td>{record.leaveDays}</td>
+        <td>{record.startDate}</td>
+        <td>{record.endDate}</td>
+        <td>{record.leaveReason}</td>
       </tr>
     ));
 
@@ -56,14 +56,14 @@ const ApprovedRecordList = props => {
 
 const PendingRecordList = props => {
   const pendingList = props.user_record.leaverecord//.edges
-    .filter(data => data.node.leaveStatus === 'pending')
+    .filter(data => data.leaveStatus === 'pending')
     .map(record => (
-      <tr key={record.node.id}>
-        <td>{record.node.leaveName}</td>
-        <td>{record.node.leaveDays}</td>
-        <td>{record.node.startDate}</td>
-        <td>{record.node.endDate}</td>
-        <td>{record.node.leaveReason}</td>
+      <tr key={record.id}>
+        <td>{record.leaveName}</td>
+        <td>{record.leaveDays}</td>
+        <td>{record.startDate}</td>
+        <td>{record.endDate}</td>
+        <td>{record.leaveReason}</td>
       </tr>
     ));
 

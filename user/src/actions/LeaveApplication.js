@@ -1,22 +1,13 @@
 // @flow
 import axios from 'axios';
-import { gql } from 'apollo-boost';
+import { print } from 'graphql';
+import gql from 'graphql-tag';
 
 const APPLY_LEAVE = gql`
-  mutation($id: ID!) {
-    user(id: $id) {
-      id
-      name
-      surname
-      annual
-      sick
-      bereavement
-      christmas
-      maternity
-      familyCare
-      paternity
-      gender
-      designation
+  mutation applyforleave($data: leaveInputType!) {
+    applyforleave(data: $data) {
+      message
+      ok
     }
   }
 `;
@@ -50,7 +41,7 @@ export const fetchLeaveApplication = (applicationDetails: Object) => async (
   try {
     dispatch(requestLeaveApplication(applicationDetails));
 
-    let data = new FormData();
+    /*let data = new FormData();
     data.append('userId', applicationDetails.user_id);
     data.append('leaveName', applicationDetails.leave);
     data.append('leaveType', applicationDetails.leaveType);
@@ -62,12 +53,28 @@ export const fetchLeaveApplication = (applicationDetails: Object) => async (
     data.append('applicationDays', applicationDetails.applicationDays);
     data.append('reason', applicationDetails.reason);
     data.append('sickSheet', applicationDetails.sickSheet);
-    data.append('designation', applicationDetails.designation);
+    data.append('designation', applicationDetails.designation);*/
 
     const response = await axios.post(
-      'http://localhost:8080/applyforleave',
-      data
-    );
+      'http://localhost:8080/applyforleave', {
+      query: print(APPLY_LEAVE),
+      variables: {
+        data: {
+          userId: applicationDetails.user_id,
+          leaveName: applicationDetails.leave,
+          leaveType: applicationDetails.leaveType,
+          startDate: applicationDetails.startDate,
+          endDate: applicationDetails.endDate,
+          leaveDays: applicationDetails.leaveDays,
+          applicationDays: applicationDetails.applicationDays,
+          reason: applicationDetails.reason,
+          sickSheet: applicationDetails.sickSheet,
+          designation: applicationDetails.designation,
+          supervisorEmail: applicationDetails.supervisorEmail,
+          secretaryEmail: applicationDetails.secretaryEmail
+        }
+      }
+    });
 
     if (response.status !== 201) {
       dispatch(leaveApplicationFailure(response.data));

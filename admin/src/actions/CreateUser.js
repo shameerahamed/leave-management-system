@@ -35,24 +35,6 @@ export const clearNewUserRecordMessage = () => {
   };
 };
 
-type UserInput = {
-  surname: string,
-  name: string,
-  annualLeave: string,
-  staffEmail: string,
-  designation: string,
-  gender: string,
-  annual: number,
-  familyCare: number,
-  bereavement: number,
-  sick: number,
-  christmas: number,
-  maternity: number,
-  paternity: number,
-  employeeNumber: any,
-  dateOfBirth: any
-};
-
 const CREATE_USER = gql `
 mutation addUser($data: UserInput!) {
   addUser(data: $data) {
